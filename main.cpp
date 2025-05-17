@@ -1,6 +1,9 @@
 #include <iostream>
 using namespace std;
 
-main(){
-    cout << "Hello Tubes PBO";
+int main() {
+    while (true) {
+        cout << "cukurukuk" << endl;
+    }
+    return 0;
 }
