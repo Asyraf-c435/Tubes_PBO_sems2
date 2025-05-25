@@ -10,7 +10,7 @@ protected:
     string nomorakun;
     double saldo;
     string no_pinword;
-
+    
 public:
     User(string nama, string nomorakun, double saldo, string no_pinword)
         : nama(nama), nomorakun(nomorakun), saldo(saldo), no_pinword(no_pinword) {}
