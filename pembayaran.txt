@@ -1,0 +1,11 @@
+Pembayaran : PLN
+Nama       : zaidan
+Biaya      : Rp 55000
+Nomor Pembayaran : 3932 6518 0180
+Pembayaran         : PDAM
+Nama               : zaidan
+Biaya              : Rp 750000
+Biaya Admin        : Rp 2500
+Total Pembayaran   : Rp 752500
+Nomor Pembayaran   : 2564 2648 6114
+-------------------------------
