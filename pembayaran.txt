@@ -9,3 +9,17 @@ Biaya Admin        : Rp 2500
 Total Pembayaran   : Rp 752500
 Nomor Pembayaran   : 2564 2648 6114
 -------------------------------
+Pembayaran         : PLN
+Nama               : atha
+Biaya              : Rp 71000
+Biaya Admin        : Rp 2500
+Total Pembayaran   : Rp 73500
+Nomor Pembayaran   : 0285 7215 0233
+-------------------------------
+Pembayaran         : Pendidikan
+Nama               : atha
+Biaya              : Rp 90000
+Biaya Admin        : Rp 2500
+Total Pembayaran   : Rp 92500
+Nomor Pembayaran   : 4749 4414 4500
+-------------------------------
