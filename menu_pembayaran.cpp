@@ -35,18 +35,31 @@ string generateNomor() {
     return nomor;
 }
 
-bool konfirmasiLanjut() {
+bool pilihJenisSetoran() {
     int pilihan;
-    cout << "\n> LANJUTKAN" << endl;
-    cout << "> KEMBALI" << endl;
-    cout << "PILIH (1=LANJUTKAN, 2=KEMBALI): ";
-    while (!(cin >> pilihan) || (pilihan != 1 && pilihan != 2)) {
-        cout << "Pilihan tidak valid. Masukkan 1 atau 2: ";
+    cout << "=== PILIH JENIS SETORAN ANDA ===" << endl;
+    cout << "1. Rekening Giro" << endl;
+    cout << "2. Rekening Tabungan" << endl;
+    cout << "3. Ke Menu Utama" << endl;
+    cout << "Pilih (1-3): ";
+    while (!(cin >> pilihan) || pilihan < 1 || pilihan > 3) {
+        cout << "Input tidak valid. Masukkan angka 1-3: ";
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
 
-    return (pilihan == 1);
+    switch (pilihan) {
+        case 1:
+            cout << "\nAnda memilih Rekening Giro.\n";
+            return true; // lanjutkan ke menu pembayaran
+        case 2:
+            cout << "\nAnda memilih Rekening Tabungan.\n";
+            return true; // lanjutkan ke menu pembayaran
+        case 3:
+            cout << "\nKembali ke menu utama.\n";
+            return false; // tidak lanjutkan
+    }
+    return false;
 }
 
 void tampilkanMenu() {
@@ -71,7 +84,7 @@ void tampilkanMenu() {
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
-        cin.ignore(); // clear newline after pilihan
+        cin.ignore(); // bersihkan newline
 
         switch (pilihan) {
             case 1: layanan = "PLN"; break;
@@ -92,7 +105,7 @@ void tampilkanMenu() {
         total = nominal + biayaAdmin;
         string nomor = generateNomor();
 
-        ofstream outfile("pembayaran.txt", ios::app); 
+        ofstream outfile("pembayaran.txt", ios::app);
         if (outfile.is_open()) {
             outfile << "Pembayaran         : " << layanan << endl;
             outfile << "Nama               : " << nama << endl;
@@ -118,17 +131,19 @@ void tampilkanMenu() {
         char ulang;
         cout << "\nIngin melakukan pembayaran lagi? (y/n): ";
         cin >> ulang;
-        cin.ignore(); 
+        cin.ignore();
         lanjut = (ulang == 'y' || ulang == 'Y');
     }
 
-    cout << "Terima kasih telah menggunakan layanan kami.\n";
+    cout << "\nTerima kasih telah menggunakan layanan kami.\n";
 }
 
 int main() {
+    std::ofstream file("Pembayaran.txt", std::ios::trunc); 
+    file.close();
     srand(time(0));
     if (login()) {
-        if (konfirmasiLanjut()) {
+        if (pilihJenisSetoran()) {
             tampilkanMenu();
         } else {
             cout << "Menu utama belum tersedia." << endl;
