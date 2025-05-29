@@ -2,23 +2,24 @@
 #include <fstream>
 #include <vector>
 #include <string>
+#include <limits>
 using namespace std;
 
 class User {
 protected:
     string nama;
-    string nomorakun;
+    string nomor_akun;
     double saldo;
-    string no_pinword;
+    string nomor_PIN;
     
 public:
-    User(string nama, string nomorakun, double saldo, string no_pinword)
-        : nama(nama), nomorakun(nomorakun), saldo(saldo), no_pinword(no_pinword) {}
+    User(string nama, string nomor_akun, double saldo, string nomor_PIN)
+        : nama(nama), nomor_akun(nomor_akun), saldo(saldo), nomor_PIN(nomor_PIN) {}
 
-    string getnomorakun() { return nomorakun; }
+    string getnomor_akun() { return nomor_akun; }
     string getnama() { return nama; }
     double getsaldo() { return saldo; }
-    string getno_pinword() { return no_pinword; }
+    string getnomor_PIN() { return nomor_PIN; }
 
     void deposit(double amount) {
         saldo += amount;
@@ -31,12 +32,12 @@ public:
     }
 
     void showInfo() {
-        cout << "Nama: " << nama << "\nNo Rekening: " << nomorakun
+        cout << "Nama: " << nama << "\nNo Rekening: " << nomor_akun
              << "\nSaldo: " << saldo << endl;
     }
 
     string toFileString() {
-        return nama + " " + nomorakun + " " + to_string(saldo) + " " + no_pinword;
+        return nama + " " + nomor_akun + " " + to_string(saldo) + " " + nomor_PIN;
     }
 };
 
@@ -136,7 +137,7 @@ public:
         report << "===== LAPORAN DATA USER =====\n";
         for (User& u : users) {
             report << "Nama         : " << u.getnama() << endl;
-            report << "No Rekening  : " << u.getnomorakun() << endl;
+            report << "No Rekening  : " << u.getnomor_akun() << endl;
             report << "Saldo        : " << u.getsaldo() << endl;
             report << "------------------------------\n";
         }
@@ -150,7 +151,7 @@ public:
         cin >> no_acc;
 
         for (size_t i = 0; i < users.size(); ++i) {
-            if (users[i].getnomorakun() == no_acc) {
+            if (users[i].getnomor_akun() == no_acc) {
                 cout << "User ditemukan: " << users[i].getnama() << endl;
                 cout << "Apakah yakin ingin menghapus? (y/n): ";
                 char konfirmasi;
@@ -173,7 +174,7 @@ public:
         cout << "PIN: "; cin >> no_pin;
 
         for (User& u : users) {
-            if (u.getnomorakun() == no_acc && u.getno_pinword() == no_pin) {
+            if (u.getnomor_akun() == no_acc && u.getnomor_PIN() == no_pin) {
                 userMenu(u);
                 return;
             }
@@ -188,7 +189,8 @@ public:
             cout << "1. Cek Saldo\n";
             cout << "2. Setor\n";
             cout << "3. Tarik\n";
-            cout << "4. Logout\n";
+            cout << "4. Pembayaran\n";
+            cout << "5. Logout\n";
             cout << "Pilih: ";
             cin >> pilihan;
             double amount;
@@ -201,26 +203,79 @@ public:
                     cout << "Jumlah setor: ";
                     cin >> amount;
                     user.deposit(amount);
-                    logTransaction("[SETOR] " + user.getnomorakun() + " - " + user.getnama() + " setor " + to_string(amount));
+                    logTransaction("[SETOR] " + user.getnomor_akun() + " - " + user.getnama() + " setor " + to_string(amount));
                     break;
                 case 3:
                     cout << "Jumlah tarik: ";
                     cin >> amount;
                     if (user.getsaldo() - amount < MIN_SALDO) {
                         cout << "Transaksi gagal. Saldo tidak boleh kurang dari " << MIN_SALDO << endl;
-                        logTransaction("[GAGAL TARIK] " + user.getnomorakun() + " - " + user.getnama() + " gagal tarik " + to_string(amount));
+                        logTransaction("[GAGAL TARIK] " + user.getnomor_akun() + " - " + user.getnama() + " gagal tarik " + to_string(amount));
                     } else {
                         user.withdraw(amount);
-                        logTransaction("[TARIK] " + user.getnomorakun() + " - " + user.getnama() + " tarik " + to_string(amount));
+                        logTransaction("[TARIK] " + user.getnomor_akun() + " - " + user.getnama() + " tarik " + to_string(amount));
                     }
                     break;
                 case 4:
+                    paymentMenu(user);
+                    break;
+                case 5:
                     cout << "Logout...\n";
                     break;
                 default:
                     cout << "Pilihan tidak valid.\n";
             }
-        } while (pilihan != 4);
+        } while (pilihan != 5);
+    }
+
+    void paymentMenu(User& user) {
+        const int biayaAdmin = 2500;
+        bool lanjut = true;
+
+        while (lanjut) {
+            int pilihan;
+            string layanan;
+            double nominal;
+
+            cout << "\n=== MENU PEMBAYARAN ===" << endl;
+            cout << "1. PLN\n2. PDAM\n3. Pendidikan\nPilih layanan (1-3): ";
+            while (!(cin >> pilihan) || pilihan < 1 || pilihan > 3) {
+                cout << "Input tidak valid. Masukkan angka 1-3: ";
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }
+            cin.ignore();
+
+            switch (pilihan) {
+                case 1: layanan = "PLN"; break;
+                case 2: layanan = "PDAM"; break;
+                case 3: layanan = "Pendidikan"; break;
+            }
+
+            cout << "Masukkan nominal pembayaran untuk " << layanan << " (Rp): ";
+            while (!(cin >> nominal) || nominal <= 0) {
+                cout << "Nominal tidak valid. Masukkan angka positif: ";
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }
+
+            double total = nominal + biayaAdmin;
+
+            if (user.getsaldo() < total) {
+                cout << "Saldo tidak mencukupi untuk pembayaran ini.\n";
+                logTransaction("[GAGAL BAYAR] " + user.getnomor_akun() + " - " + user.getnama() + " gagal bayar " + layanan);
+            } else {
+                user.withdraw(total);
+                logTransaction("[BAYAR] " + user.getnomor_akun() + " - " + user.getnama() + " bayar " + layanan + " sebesar Rp" + to_string(total));
+                cout << "Pembayaran berhasil.\n";
+            }
+
+            char ulang;
+            cout << "Lakukan pembayaran lain? (y/n): ";
+            cin >> ulang;
+            cin.ignore();
+            lanjut = (ulang == 'y' || ulang == 'Y');
+        }
     }
 
     void registerUser() {
@@ -232,7 +287,7 @@ public:
         cout << "No Rekening: "; cin >> no_acc;
 
         for (User& u : users) {
-            if (u.getnomorakun() == no_acc) {
+            if (u.getnomor_akun() == no_acc) {
                 cout << "No rekening sudah terdaftar!\n";
                 return;
             }
