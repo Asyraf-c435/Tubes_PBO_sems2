@@ -1,0 +1,7 @@
+Pembayaran         : PLN
+Nama               : 
+Biaya              : Rp 78000
+Biaya Admin        : Rp 2500
+Total Pembayaran   : Rp 80500
+Nomor Pembayaran   : 7614 2322 1685
+-------------------------------

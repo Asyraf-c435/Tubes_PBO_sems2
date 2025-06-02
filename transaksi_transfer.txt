@@ -1,0 +1,11 @@
+============== TRANSFER ============= Dari: asd
+Ke: qwe
+Jumlah: Rp870.000
+Tanggal Senin_2_Juni_2025
+============== TRANSFER ============= 
+Dari   : asd
+Ke     : asd
+Bank   : BNI
+Jumlah : Rp11.111
+Waktu  : Monday, 02-06-2025 16:48:06
+--------------------------------------

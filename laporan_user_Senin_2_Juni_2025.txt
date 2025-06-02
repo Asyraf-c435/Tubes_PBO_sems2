@@ -1,0 +1,12 @@
+========= LAPORAN DATA USER =========
+Nomor Akun    : BNI174094
+Nama Nasabah  : Abidzar Al Ghifari
+Saldo         : Rp0
+Bank          : BNI
+Jenis Tabungan: Taplus
+No. Telepon   : 08549544
+Alamat        : Jl. Setiabudi
+Email         : abiszar@gmail.com
+Tanggal Lahir : 25 Noivember 2006
+Jenis Kelamin : Pria
+-------------------------------------
