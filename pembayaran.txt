@@ -5,3 +5,10 @@ Biaya Admin        : Rp 2500
 Total Pembayaran   : Rp 80500
 Nomor Pembayaran   : 7614 2322 1685
 -------------------------------
+Pembayaran         : PLN
+Nama               : asd
+Biaya              : Rp150.000
+Biaya Admin        : Rp2.500
+Total Pembayaran   : Rp152.500
+Nomor Pembayaran   : 8824 5517 1152
+-------------------------------

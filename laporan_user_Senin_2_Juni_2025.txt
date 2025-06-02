@@ -1,12 +1,34 @@
 ========= LAPORAN DATA USER =========
 Nomor Akun    : BNI174094
-Nama Nasabah  : Abidzar Al Ghifari
+Nama Nasabah  : ads
+Saldo         : Rp0
+Bank          : BNI
+Jenis Tabungan: Taplus Anak
+No. Telepon   : asd
+Alamat        : asd
+Email         : as
+Tanggal Lahir : d
+Jenis Kelamin : Pria
+-------------------------------------
+Nomor Akun    : BNI882455
+Nama Nasabah  : wer
 Saldo         : Rp0
 Bank          : BNI
 Jenis Tabungan: Taplus
-No. Telepon   : 08549544
-Alamat        : Jl. Setiabudi
-Email         : abiszar@gmail.com
-Tanggal Lahir : 25 Noivember 2006
+No. Telepon   : asd
+Alamat        : as
+Email         : da
+Tanggal Lahir : sda
+Jenis Kelamin : Perempuan
+-------------------------------------
+Nomor Akun    : BNI171152
+Nama Nasabah  : ert
+Saldo         : Rp0
+Bank          : BNI
+Jenis Tabungan: Taplus Bisnis
+No. Telepon   : asd
+Alamat        : asd
+Email         : as
+Tanggal Lahir : das
 Jenis Kelamin : Pria
 -------------------------------------

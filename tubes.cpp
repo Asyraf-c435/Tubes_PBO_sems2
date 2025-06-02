@@ -7,9 +7,9 @@
 #include <cctype>
 #include <cstdlib>
 #include <algorithm> // Unutk buat kartu
-#include <ctime> //
-#include <iomanip> //
-#include <conio.h> //
+#include <ctime> 
+#include <iomanip> 
+#include <conio.h> 
 using namespace std;
 
 
@@ -66,7 +66,7 @@ protected:
     int getsaldo() { return saldo; }
     string getno_pinword() { return no_pinword; }
 
-    // int setTingkatIsaldo(){}
+
     void setno_pinword(string pinBaru) {
         no_pinword = pinBaru;
     }
@@ -79,7 +79,7 @@ protected:
     void loading(){
         for (int i = 0; i < 3; i++){
             cout << ".";
-            Sleep(100);
+            Sleep(800);
         }
     }
 
@@ -87,17 +87,12 @@ protected:
         system("cls");
     }
 
-    void npc(){
-        cout << "Tekan spasi untuk kembali...";
-        cin.get();
-    }
-
     void inputTidakValid() {
     cout << "\033[31mINPUTAN TIDAK VALID!!!\033[0m" << endl;
     }
 
     void jeda(){
-        Sleep(2000);
+        Sleep(2400);
     }
 
     void proses(){
@@ -175,7 +170,7 @@ protected:
 
 
 
-string getHariTanggal() {
+    string getHariTanggal() {
     string namaHari[] = {"Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"};
     string namaBulan[] = {"Januari", "Februari", "Maret", "April", "Mei", "Juni",
                           "Juli", "Agustus", "September", "Oktober", "November", "Desember"};
@@ -194,10 +189,7 @@ string getHariTanggal() {
 }
 
 
-    void setWarna(int kodeWarna) {
-    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleTextAttribute(hConsole, kodeWarna);
-}
+ 
 
 void tampilATM() {
     cout << R"(
@@ -537,11 +529,11 @@ public:
         clear();
         do {
             clear();
-            cout << "===== ADMIN =====\n";
-            cout << "> Login Admin\n";
-            cout << "> Registrasi Admin\n";
-            cout << "> Sistem ATM\n";
-            cout << "Pilih: ";
+            cout << "========== ADMIN ==========\n";
+            cout << "(1) > Login Admin\n";
+            cout << "(2) > Registrasi Admin\n";
+            cout << "(3) > Back\n";
+            cout << "\nPilih: ";
             cin >> pilihan;
 
             switch (pilihan) {
@@ -610,13 +602,13 @@ public:
         int pilihan;
      do {
             clear();
-            cout << "===== MENU ADMIN =====\n";
-            cout << "> Lihat Semua User\n";
-            cout << "> Registrasi User Baru\n";
-            cout << "> Export Laporan User (TXT)\n";
-            cout << "> Hapus Akun User\n";
-            cout << "> Logout\n";
-            cout << "Pilih: ";
+            cout << "========== MENU ADMIN ==========\n";
+            cout << "(1) > Lihat Semua User\n";
+            cout << "(2) > Registrasi User Baru\n";
+            cout << "(3) > Export Laporan User (TXT)\n";
+            cout << "(4) > Hapus Akun User\n";
+            cout << "(5) > Logout\n";
+            cout << "\nPilih: ";
             cin >> pilihan;
 
             switch (pilihan) {
@@ -679,8 +671,8 @@ public:
             cout << "\nUser ditemukan: " << nasabah[i]->namanasabah << endl;
             cout << "No akun bank  : " << nasabah[i]->getnomorakun() << endl;
             cout << "Apakah yakin ingin menghapus?" << endl;
-            cout << "> Ya (1)" << endl;
-            cout << "> Tidak (2)" << endl;
+            cout << "(1) > Ya" << endl;
+            cout << "(2) > Tidak" << endl;
             int konfirmasi;
             cin >> konfirmasi;
             if (konfirmasi == 1) {
@@ -749,7 +741,6 @@ void TampilanMasukKartu() {
     clear();
     cout << "NOMOR KARTU TIDAK DITEMUKAN!!!";
     loading();
-    jeda();
     TampilanMasukKartu();  
 }
 
@@ -802,8 +793,8 @@ string PilihPecahanUang(string user, int jumlah){
 int pilihan, uang_pecahan;
 clear();
 cout << "- PECAHAN UANG YANG DAPAT DIAMBIL" << endl;
-cout << "> 100.000" << endl;
-cout << "> 50.000\n" << endl;
+cout << "(1) > 100.000" << endl;
+cout << "(2) > 50.000\n" << endl;
 
 cout << setw(28) << "JIKA ADA MASALAH PADA SAAT" << endl;
 cout << setw(28) << "ANDA BERTRANSAKSI, HUBUNGI" << endl;
@@ -874,8 +865,8 @@ int setoran = 0, uang , jumlah, pilih;
 clear();
 cout <<"MASUKKAN JUMLAH UANG TUNAI YANG INI DISETOR" 
 << endl;
-cout << "> Rp 100.000" << endl;
-cout << "> Rp 50.000" << endl;
+cout << "(1) > Rp 100.000" << endl;
+cout << "(2) > Rp 50.000" << endl;
 cout << "Pilih: ";
 cin >> pilih;
 if(pilih == 1){
@@ -884,7 +875,8 @@ if(pilih == 1){
     uang = 50000;
 } else{
     inputTidakValid();
-return 0;
+    jeda();
+return SetorUang(user);
 }
     
 clear();
@@ -979,8 +971,8 @@ for (size_t i = 0; i < nasabah.size(); i++) {
 
         clear();
         cout << "NOMINAL: " << formatRupiahDisplay(jumlah) << endl;
-        cout << "> 1. JIKA BENAR" << endl;
-        cout << "> 2. JIKA SALAH" << endl;
+        cout << "(1) > JIKA BENAR" << endl;
+        cout << "(2) > JIKA SALAH" << endl;
 
         char pilihan = _getch();
         if (pilihan == '1') {
@@ -1017,10 +1009,10 @@ void MenuAtm(string user, string pin){
     cout << "(PILIH 'MENU LAIN' JIKA INGIN CETAK RECEIPT)\n"
     << endl;
 
-    cout << "> 250.000 " << setw(35) <<"500.000 <\n" << endl;
-    cout << "> 1.000.000" << setw(34) << "SETORAN <\n" << setw(43) << "TUNAI " << endl;
-    cout << "> INFORMASI\n  & MUTASI" << setw(35) <<"PENARIKAN <\n" << setw(43) <<"JUMLAH LAIN " << endl << endl;
-    cout << "> EXIT"<< setw(38) << "MENU LAIN <" << endl;
+    cout << "(1) > 250.000 " << setw(31) <<"500.000 < (5)\n" << endl;
+    cout << "(2) > 1.000.000" << setw(30) << "SETORAN < (6)\n" << setw(39) << "TUNAI " << endl;
+    cout << "(3) > INFORMASI\n      & MUTASI" << setw(31) <<"PENARIKAN < (7)\n" << setw(38) <<"JUMLAH LAIN " << endl << endl;
+    cout << "(4) > EXIT"<< setw(34) << "MENU LAIN < (8)" << endl;
     cout << "\nPILIH: ";
     cin >> choose;
 
@@ -1063,8 +1055,8 @@ void GantiPin(string user, string pin){
     string pw;
     clear();
     cout << "APAKAH ANDA INGIN MENGGANTI PASSWORD?" << endl;
-    cout << "1. YA" << endl;
-    cout << "2. TIDAK" << endl;
+    cout << "(1) > YA" << endl;
+    cout << "(2) > TIDAK" << endl;
     cout << "PILIH: ";
     cin >> pilih;
 
@@ -1172,7 +1164,7 @@ void Transfer(string user, string pin) {
     cout << "Nomor Rekening   : " << penerima->getnomorakun() << endl;
     cout << "Bank             : " << penerima->banks << endl;
     cout << "======================================\n";
-    cout << "LANJUTKAN?\n> 1. YA\n> 2. TIDAK\nPILIH: ";
+    cout << "LANJUTKAN?\n(1) > YA\n(2) > TIDAK\nPILIH: ";
     cin >> condition;
 
     if (condition != 1) {
@@ -1228,8 +1220,8 @@ for (size_t i = 0; i < nasabah.size(); i++) {
    
     clear();
     cout << "ANDA AKAN TRANSFER SEBESAR: " << formatRupiahDisplay(jumlah) << endl;
-    cout << "> KONFIRMASI" << endl;
-    cout << "> BATALKAN" << endl;
+    cout << "(1) > KONFIRMASI" << endl;
+    cout << "(2) > BATALKAN" << endl;
     cout << "PILIH: ";
     cin >> condition;
 
@@ -1302,73 +1294,120 @@ void lihatMutasi(string user, string pin) {
 }
 
 
-void tampilkanMenu(string user) {
+void tampilkanMenu(string user, string pin) {
     cout << fixed << setprecision(2);
 
-    bool lanjut = true;
-    while (lanjut) {
+    while (true) {
         int pilihan;
-        string layanan;
-        double nominal;
-        string nama;
+        string layanan, deskripsi;
+        int nominal = 0;
         const int biayaAdmin = 2500;
         double total;
 
+        clear();
         cout << "\n=== MENU PEMBAYARAN ===" << endl;
         cout << "1. PLN" << endl;
         cout << "2. PDAM" << endl;
         cout << "3. Pendidikan" << endl;
         cout << "Pilih layanan (1-3): ";
-        while (!(cin >> pilihan) || pilihan < 1 || pilihan > 3) {
-            cout << "Input tidak valid. Masukkan angka 1-3: ";
+
+        if (!(cin >> pilihan) || pilihan < 1 || pilihan > 3) {
+            inputTidakValid();
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            continue;
         }
-        cin.ignore(); 
+        cin.ignore();
 
         switch (pilihan) {
             case 1: layanan = "PLN"; break;
             case 2: layanan = "PDAM"; break;
             case 3: layanan = "Pendidikan"; break;
         }
+
         clear();
         cout << "Masukkan nominal pembayaran untuk " << layanan << " (Rp): ";
-        while (!(cin >> nominal) || nominal <= 0) {
-            cout << "Nominal tidak valid. Masukkan angka positif: ";
+        if (!(cin >> nominal) || nominal <= 0) {
+            cout << "Nominal tidak valid. Masukkan angka positif.\n";
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            continue;
         }
+
+        cin.ignore(); 
+
+        cout << "Deskripsi: ";
+        getline(cin, deskripsi);
 
         total = nominal + biayaAdmin;
         string nomor = generateNomor();
 
-        ofstream outfile("pembayaran.txt", ios::app);
-        if (outfile.is_open()) {
-            outfile << "Pembayaran         : " << layanan << endl;
-            outfile << "Nama               : " << nama << endl;
-            outfile << "Biaya              : Rp " << nominal << endl;
-            outfile << "Biaya Admin        : Rp " << biayaAdmin << endl;
-            outfile << "Total Pembayaran   : Rp " << total << endl;
-            outfile << "Nomor Pembayaran   : " << nomor << endl;
-            outfile << "-------------------------------" << endl;
-            outfile.close();
-            cout << "\nData berhasil disimpan ke pembayaran.txt!" << endl;
-        } else {
-            cout << "Gagal membuka file!" << endl;
+       
+        bool ditemukan = false;
+
+        for (size_t i = 0; i < nasabah.size(); i++) {
+            if (user == nasabah[i]->getnomorakun()) {
+                ditemukan = true;
+
+                clear();
+                cout << "Pembayaran         : " << layanan << endl;
+                cout << "Deskripsi          : " << deskripsi << endl;
+                cout << "Nama               : " << nasabah[i]->namanasabah << endl;
+                cout << "Biaya              : " << formatRupiahDisplay(nominal) << endl;
+                cout << "Biaya Admin        : " << formatRupiahDisplay(biayaAdmin) << endl;
+                cout << "Total Pembayaran   : " << formatRupiahDisplay(total) << endl;
+                cout << "Nomor Pembayaran   : " << nomor << endl;
+                cout << "\n(1) > KONFIRMASI\n(2) > BATALKAN\n";
+                cout << "\nPilihan Anda: ";
+
+                int konfirmasi;
+                cin >> konfirmasi;
+
+                if (konfirmasi == 1) {
+                    if (total > nasabah[i]->getsaldo()){
+                        clear();
+                        cout << "MAAF SALDO ANDA TIDAK CUKUP WKWK";
+                        jeda();
+                        MenuLIain(user, pin);
+                    }
+                    
+                    ofstream outfile("pembayaran.txt", ios::app);
+                    if (outfile.is_open()) {
+                        outfile << "Pembayaran         : " << layanan << endl;
+                        outfile << "Deskripsi          : " << deskripsi << endl;
+                        outfile << "Nama               : " << nasabah[i]->namanasabah << endl;
+                        outfile << "Biaya              : " << formatRupiahDisplay(nominal) << endl;
+                        outfile << "Biaya Admin        : " << formatRupiahDisplay(biayaAdmin) << endl;
+                        outfile << "Total Pembayaran   : " << formatRupiahDisplay(total) << endl;
+                        outfile << "Nomor Pembayaran   : " << nomor << endl;
+                        outfile << "-------------------------------" << endl;
+                        outfile.close();
+                        cout << "\nData berhasil disimpan ke pembayaran.txt!" << endl;
+                    } else {
+                        cout << "Gagal membuka file!" << endl;
+                    }
+
+                    nasabah[i]->kurangiSaldo(total);
+                    proses();
+                    thankyou();
+                } else {
+                    cout << "\nTransaksi dibatalkan oleh pengguna."; loading();
+                }
+
+                pilih(user);  
+                return;
+            }
         }
 
-        char ulang;
-        cout << "\nIngin melakukan pembayaran lagi? (y/n): ";
-        cin >> ulang;
-        cin.ignore();
-        lanjut = (ulang == 'y' || ulang == 'Y');
+        if (!ditemukan) {
+            cout << "Akun tidak ditemukan!" << endl;
+            return;
+        }
     }
-
-    cout << "\nTerima kasih telah menggunakan layanan kami.\n";
-
 }
 
-void infoSaldo(string user){
+
+void infoSaldo(string user, string pin){
  
     clear();
     cout << "==== SALDO ANDA ====" << endl;
@@ -1377,7 +1416,7 @@ void infoSaldo(string user){
         if (nasabah[i]->getnomorakun() == user) {
             cout << formatRupiahDisplay(nasabah[i]->getsaldo()) << endl;
             system("pause");
-            return;
+            MenuLIain(user, pin);
         }
     }
 
@@ -1389,9 +1428,11 @@ void infoSaldo(string user){
 void MenuLIain(string user, string pin){
     int chose;
     clear();
-    cout << "MENU LAIN ANDA DAPAT MENGAKSES FITUR TAMBAHAN ATM DISINI" << endl;
-    cout << "> GANTI PIN" << setw(30) << "< SALDO INFORMASI" << endl;
-    cout << "> TRANSFER" << setw(30) << "< PEMBAYARAN" << endl;
+    cout << "MENU LAIN ANDA DAPAT MENGAKSES FITUR TAMBAHAN ATM DISINI" << endl << endl;
+    cout << "(1) > GANTI PIN" << setw(42) << "INFORMASI SALDO < (3)" << endl << endl;
+    cout << "(2) > TRANSFER" << setw(43) << "PEMBAYARAN < (4)" << endl << endl;
+    cout << "(5) > BACK\n";
+    cout << "\nPILIH: ";
     cin >> chose;
     
     switch(chose){
@@ -1402,11 +1443,14 @@ void MenuLIain(string user, string pin){
         Transfer(user, pin);
     break;
     case 3:
-        infoSaldo(user);
+        infoSaldo(user, pin);
     break;
     case 4:
-        tampilkanMenu(user);
-    break; 
+        tampilkanMenu(user, pin);
+    break;
+    case 5:
+        MenuAtm(user, pin);
+    break;  
     default:
     break;
     }
@@ -1416,9 +1460,9 @@ void pilih(string user){
     int pkl;
     clear();
     cout << "APAKAH ANDA INGIN MELAKUKAN TRANSAKASI LAGI?" << endl;
-    cout << "> Ya" << endl;
-    cout << "> Tidak" << endl;
-    cout << "Pilih: ";
+    cout << "> YA" << endl;
+    cout << "> TIDAK" << endl;
+    cout << "PILIH: ";
     cin >> pkl;
 
     if (pkl == 1){
@@ -1441,10 +1485,10 @@ int main() {
         cout << "SELAMAT DATANG DI BANK"; 
         cout << " =========\n";
         cout << "Anda mau akses yang mana?" << endl;
-        cout << "> ADMIN" << endl;
-        cout << "> NASABAH" << endl;
-        cout << "> KELUAR" << endl;
-        cout << "Pilih: ";
+        cout << "(1) > ADMIN" << endl;
+        cout << "(2) > NASABAH" << endl;
+        cout << "(3) > KELUAR" << endl;
+        cout << "\nPilih: ";
         cin >> pilih;
 
         switch (pilih) {
