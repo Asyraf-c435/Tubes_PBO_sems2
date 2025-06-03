@@ -1,4 +1,4 @@
-// File: Bank.h
+
 #ifndef BANK_H
 #define BANK_H
 

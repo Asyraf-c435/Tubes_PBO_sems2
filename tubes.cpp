@@ -982,7 +982,7 @@ for (size_t i = 0; i < nasabah.size(); i++) {
             jumlah = 0;
             continue;
         }
-    } else if (input == 8 && jumlah > 0) {
+    } else if (input == 8 && jumlah > 0) { //kode 8 backspace
         jumlah /= 10;
     } else if (isdigit(input)) {
         int digit = input - '0';
@@ -992,7 +992,7 @@ for (size_t i = 0; i < nasabah.size(); i++) {
                 jumlah = newValue;
             }
         }
-    } else if (input == 27) {
+    } else if (input == 27) { //kode esc
         cout << "Transaksi dibatalkan" << endl;
         return -1;
     }
